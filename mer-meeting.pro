@@ -18,8 +18,6 @@ SOURCES += src/mer-meeting.cpp
 
 OTHER_FILES += qml/mer-meeting.qml \
     qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/mer-meeting.spec \
     rpm/mer-meeting.yaml \
     translations/*.ts \
@@ -38,4 +36,8 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/mer-meeting-de.ts
 
 DISTFILES += \
-    rpm/mer-meeting.changes
+    rpm/mer-meeting.changes \
+    qml/pages/SavedLogs.qml \
+    qml/pages/Main.qml \
+    qml/js/LogsList.js \
+    qml/js/libs/underscore.js
