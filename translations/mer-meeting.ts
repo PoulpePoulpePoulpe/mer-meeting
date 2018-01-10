@@ -19,7 +19,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logs</source>
+        <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

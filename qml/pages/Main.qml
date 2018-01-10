@@ -52,32 +52,34 @@ Page {
         }
 
         // Tell SilicaFlickable the height of its content.
-        contentHeight: column.height
+        contentHeight: parent.height
 
-        // Place our content in a Column.  The PageHeader is always placed at the top
-        // of the page, followed by our content.
-        Column {
-            id: column
+        PageHeader {
+            title: qsTr("Mer Meeting - Logs")
+        }
 
-            width: page.width
-            spacing: Theme.paddingLarge
+        BusyIndicator {
+            anchors.horizontalCenter: parent.horizontalCenter
+            running: !Logic.parsePage()
+            size: BusyIndicatorSize.Large
+        }
 
-            PageHeader {
-                title: qsTr("Mer Meeting - Logs")
+        SilicaListView {
+            id: listView
+            model: Logic.list
+            anchors.fill: parent
+
+            delegate: BackgroundItem {
+                width: listView.width
+                Label {
+                    x: Theme.horizontalPageMargin
+                    text: qsTr("Item") + " " + index + ":" + Logic.list[index]
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                }
+                onClicked: console.log("Clicked " + index)
             }
-
-            Label {
-                x: Theme.horizontalPageMargin
-                text: qsTr("Logs")
-                color: Theme.secondaryHighlightColor
-                font.pixelSize: Theme.fontSizeExtraLarge
-            }
-
-            BusyIndicator {
-                anchors.horizontalCenter: parent.horizontalCenter
-                running: !Logic.parsePage()
-                size: BusyIndicatorSize.Large
-            }
+            VerticalScrollDecorator {}
         }
     }
 }

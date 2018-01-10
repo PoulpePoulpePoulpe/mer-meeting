@@ -19,8 +19,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logs</source>
-        <translation type="unfinished"></translation>
+        <source>Item</source>
+        <translation type="unfinished">Element</translation>
     </message>
 </context>
 <context>

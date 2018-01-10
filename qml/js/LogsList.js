@@ -1,3 +1,5 @@
+var list = [];
+var records;
 
 function parsePage(year) {
 
@@ -12,17 +14,32 @@ function parsePage(year) {
     req.send(null);
 
     if(req.status == 200) {
-       //console.log(req.responseText);
-        parseLinks(req.responseText);
+        records = req.responseText;
+        list = parseLinks(req.responseText);
         return true;
     }
     return false;
 }
 
+/**
+ *
+ */
 function parseLinks(html)
 {
-    var arr = [];
-    var linkReg = /"(mer-meeting\.[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}\.[0-9]{2}\.log\.html)"/g;
-    var arr = html.match(linkReg);
-    console.log(arr);
+    if (html == undefined && records == undefined)
+    {
+        if (parsePage()) {
+            html = records;
+        } else {
+            throw new Error('Well, I cannot find anything. Plz Halp');
+        }
+    }
+
+    var arr = [],
+        linkReg = /"(mer-meeting\.[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}\.[0-9]{2}\.log\.html)"/g;
+
+    arr = html.match(linkReg);
+console.log(arr);
+    return arr;
 }
+
